@@ -3,15 +3,15 @@ import { createSchema } from '../../db'
 import BaseModel from '../base-model'
 
 const schema = createSchema('user', {
-  type: Sequelize.INTEGER,
-  uid: Sequelize.STRING,
-  userName: Sequelize.STRING,
-  phone: Sequelize.STRING,
-  password: Sequelize.STRING,
-  pic: Sequelize.STRING,
-  sort: Sequelize.INTEGER,
+  openId: Sequelize.STRING,
+  nickName: Sequelize.STRING,
+  acatarUrl: Sequelize.STRING,
+  language: Sequelize.STRING,
+  country: Sequelize.STRING,
+  city: Sequelize.STRING,
+  gender: Sequelize.STRING,
   status: Sequelize.INTEGER,
-  vip:Sequelize.INTEGER,
+  sort: Sequelize.INTEGER,
 })
 
 class Model extends BaseModel {

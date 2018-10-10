@@ -14,9 +14,6 @@ const app = new Koa();
 app.keys = ['keys', 'keykeys'];
 const CONFIG = {
     key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
-    /** (number || 'session') maxAge in ms (default is 1 days) */
-    /** 'session' will result in a cookie that expires when session/browser is closed */
-    /** Warning: If a session cookie is stolen, this cookie will never expire */
     maxAge: 86400000,
     overwrite: true, /** (boolean) can overwrite or not (default true) */
     httpOnly: true, /** (boolean) httpOnly or not (default true) */
@@ -31,11 +28,6 @@ app
     .use(bodyParser())
     .use(session(CONFIG, app))
     .use(koaStatic(__dirname + "/app/public"))
-    .use(
-        views(__dirname + "/app/views", {
-            extension: "ejs"
-        })
-    )
     .use(router.routes(), router.allowedMethods())
 
 app.listen(config.port, () => console.log(`node server start success port=${config.port}`));

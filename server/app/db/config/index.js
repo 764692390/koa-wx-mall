@@ -1,9 +1,9 @@
-const database = 'koa';
-const user = 'koa';
-const pass = '123456';
+const database = 'wx_mall';
+const user = 'root';
+const pass = 'root';
 
 const options = {
-    host: '47.95.205.217',
+    host: '127.0.0.1',
     dialect: 'mysql',
     pool: {
         max: 5,
