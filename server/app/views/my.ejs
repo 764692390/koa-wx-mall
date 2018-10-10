@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <%- include('./common/head.ejs') %>
+  <body>
+    <div class="weui-tab__panel" id="my_content" style=" background: #f8f8f8;">
+        <div class="weui-cells lz-shop-user" style="margin-top: 0px; height:120px">
+            <div class="weui-cell weui-cell_access" style="height:100%;">
+                <div class="weui-cell__hd">
+                    <img data-src="<%= base.cdn %>"  id="userHeadImage" alt="" style="width:70px;height:70px;border-radius: 50%;margin-right: 10px;">
+                </div>
+                <div class="weui-cell__bd">
+                    <h4 class="weui-media-box__title" id="userName" style="font-size:13px;margin-bottom:5px;"></h4>
+                    <p class="weui-media-box__desc" style="margin-bottom:10px; font-size:14px; color:#666;">
+                        <span id="userId"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="weui-cells" style="margin-top: 10px;">
+            <a href="/orderList" class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd">
+                    <img src="<%= base.cdn %>/images/center-icon-order-all.png" alt="" class="center-list-icon">
+                </div>
+                <div class="weui-cell__bd">
+                    <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">我的订单</p>
+                </div>
+            </a>
+        </div>
+        <div class="weui-flex wy-iconlist-box">
+            <div class="weui-flex__item">
+                <a href="/orderList?status=2" class="wy-links-iconlist" style="position:relative;">
+                    <span class="weui-badge" id="payBadge" style="position: absolute;top:-7px;right:20%; font-size:10px;">11</span>
+                    <div class="img">
+                        <img src="<%= base.cdn %>/images/center-icon-order-dfk.png" style="height: 24px;width: auto;">
+                    </div>
+                    <p style="margin-top:0px;">待付款</p>
+                </a>
+            </div>
+            <div class="weui-flex__item">
+                <a href="/orderList?status=3" class="wy-links-iconlist" style="position:relative;">
+                    <span class="weui-badge" id="sendBadge" style="position: absolute;top:-7px;right:20%; font-size:10px;">2</span>
+                    <div class="img">
+                        <img src="<%= base.cdn %>/images/center-icon-order-dfh.png" style="height: 24px;width: auto;">
+                    </div>
+                    <p style="margin-top:0px;">待发货</p>
+                </a>
+            </div>
+            <div class="weui-flex__item">
+                <a href="/orderList?status=4" class="wy-links-iconlist" style="position:relative;">
+                    <span class="weui-badge" id="recvieBadge" style="position: absolute;top:-7px;right:20%; font-size:10px;">3</span>
+                    <div class="img">
+                        <img src="<%= base.cdn %>/images/center-icon-order-dsh.png" style="height: 24px;width: auto;">
+                    </div>
+                    <p style="margin-top:0px;">待收货</p>
+                </a>
+            </div>
+            <div class="weui-flex__item">
+                <a href="/orderList?status=5" class="wy-links-iconlist" style="position:relative;">
+                    <span class="weui-badge" id="evalBadge" style="position: absolute;top:-7px;right:20%; font-size:10px;">4</span>
+                    <div class="img">
+                        <img src="<%= base.cdn %>/images/center-icon-order-dpj.png" style="height: 24px;width: auto;">
+                    </div>
+                    <p style="margin-top:0px;">待评价</p>
+                </a>
+            </div>
+        </div>
+        <a href="" id="hideHref" style="display:none"></a>
+        <div class="weui-cells">
+            <a href="/collection/index" class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd">
+                    <img src="<%= base.cdn %>/images/center-icon-sc.png" alt="" class="center-list-icon">
+                </div>
+                <div class="weui-cell__bd">
+                    <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">我的收藏</p>
+                </div>
+            </a>
+            <a href="javascript:;" class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd">
+                    <img src="<%= base.cdn %>/images/center-icon-dz.png" alt="" class="center-list-icon">
+                </div>
+                <div class="weui-cell__bd">
+                    <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">地址管理</p>
+                </div>
+            </a>
+            <a href="javascript:;" class="weui-cell weui-cell_access">
+                <div class="weui-cell__hd">
+                    <img src="<%= base.cdn %>/images/center-icon-dlmm.png" alt="" class="center-list-icon">
+                </div>
+                <div class="weui-cell__bd">
+                    <p style="font-size:13px;margin-left:10px;margin-bottom:5px;">密码修改</p>
+                </div>
+            </a>
+            <a  class="weui-cell weui-cell_access" id="signoutHref">
+                <div class="weui-cell__hd">
+                    <img src="<%= base.cdn %>/images/center-icon-out.png" alt="" class="center-list-icon">
+                </div>
+                <div class="weui-cell__bd">
+                    <p style="font-size:13px;margin-left:10px;margin-bottom:5px;" id="signOut">退出登录</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!--底部-->
+    <%- include('./common/tabbar.ejs') %>
+    <script src="<%= base.cdn %>/js/app/my.js?v=<%= base.version %>" ></script>
+  </body>
+</html>

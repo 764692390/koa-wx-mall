@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<%- include('./common/head.ejs') %>
+<body>
+	<header class="wy-header">
+	    <div class="wy-header-icon-back"><a href="javascript:window.history.back();"></a></div>
+		<div class="wy-header-title">购物车</div>
+		<div class="wy-header-icon-index"><a href="/"></a></div>
+	</header>
+
+	<div class="weui-tab__panel" style="background: #f8f8f8;" >
+		<div class="weui-panel weui-panel_access" style="margin-top:41px">
+			<div class="weui-panel__bd">
+				
+				<div class="weui-media-box weui-media-box_appmsg">
+					<div class="weui-media-box__hd weui-cells_checkbox">
+						<label class="weui-check__label" for="cart-pto{{ucp.cid}}">
+							<div class="weui-cell__hd" ><input type="checkbox" class="weui-check" name="cartpro" id="cart-pto{{ucp.cid}}" ><i class="weui-icon-checked"></i></div>
+						</label>
+					</div>
+					<a href="/prodDetail/11" class="weui-media-box__hd" style="width:92px;height:92px;">
+						<img class="weui-media-box__thumb" src="<%= base.cdn%>/images/product/good2.jpg" alt="">
+					</a>
+					<div class="weui-media-box__bd" >
+						<h4 class="weui-media-box__title" style="font-size:14px;margin-bottom:2px;">aaa</h4>
+						<p class="weui-media-box__desc" style="margin-bottom:2px;-webkit-line-clamp:1;">bbbbbbbb</p>
+						<div style="font-size:13px;color:#999;margin-bottom:2px;">库存 11 件</div>
+						<p class="weui-media-box__desc" id="pricep_{{ucp.cid}}" style="color:red;">¥22</p>
+					</div>
+					<div class="weui-media-box__bd" >
+						<div style="float:right;">
+							<a href="javascript:;" cid="{{ucp.cid}}" class="wy-dele" style="margin-bottom:35px;margin-left:65px;"></a>
+							<div class="Spinner" id="spinner_21" cid="21" count="1" stock="29">
+								<a class="DisDe" href="javascript:void(0)"><i>-</i></a>
+								<input class="Amount" value="1" autocomplete="off" maxlength="3">
+								<a class="Increase" href="javascript:void(0)"><i>+</i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="weui-loadmore weui-loadmore_line" id="nodata">
+			<a class="weui-loadmore__tips" style="background-color: #f8f8f8;" href="/">购物车空空如也，点此去逛逛</a>
+		</div>
+		
+    </div>
+	
+
+	<div class="weui-tabbar" style="position:fixed; height: 47px; bottom:55px;">
+		<div class="weui-media-box__hd weui-cells_checkbox" style="line-height: 44px;margin-left:15px;">
+			<label class="weui-check__label" for="cart-all" >
+				<div class="weui-cell__hd" ><input type="checkbox" class="weui-check" id="cart-all"><i class="weui-icon-checked"></i><span style="font-size: 13px;"> 全选<span></div>
+			</label>
+		</div>
+		<div style="margin:0 auto;line-height: 47px;font-size: 13px;">
+			总计 : <span style="color:red" id="totalPrice">1000</span>
+		</div>
+		<a href="javascript:void(0);" style="width: 110px; background-color: #09bb07; color: rgb(255, 255, 255); text-align: center; line-height: 44px; font-size: 14px;" id="settlement">
+			结算
+		</a>
+	</div>
+
+	<!--底部-->
+	<%- include('./common/tabbar.ejs') %>
+
+</body>
+</html>

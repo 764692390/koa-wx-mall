@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+	<%- include('./common/head.ejs') %>
+<body>
+	<div class="weui-flex branch-box">
+            <div class="branch-left" id="branchLeft">
+              <ul>
+                <li class="active">冰冷电器</li>
+                <li></li>
+              </ul>
+            </div>
+            <div class="weui-flex__item branch-right" id="branchRight">
+                <ul class="cl">
+                  <!-- <li>
+                    <a href="/prodDetail/11">
+                      <img src="http://cdn22.ehaier.com/file/5af2987a0b04e24e06986f2f.png">
+                      <p>蜂蜜/柚子茶</p>
+                    </a>
+                  </li> -->
+                  
+                </ul>
+            </div>
+      </div>
+	<!--底部-->
+	<%- include('./common/tabbar.ejs') %>
+  <%- include('./public-tip.ejs') %>
+  <script src="<%= base.cdn %>/js/app/public-tip.js?v=<%= base.version %>" ></script>
+  <script src="<%= base.cdn %>/js/lib/iscroll-probe.js?v=<%= base.version %>" ></script>
+	<script src="<%= base.cdn %>/js/app/branch-type.js?v=<%= base.version %>" ></script>
+	
+</body>
+</html>

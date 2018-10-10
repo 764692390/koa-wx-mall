@@ -1,0 +1,49 @@
+<div class="weui-tabbar lz-shop-tabbar">
+    <% if (index == 1){ %>
+      <a href="/" class="weui-tabbar__item weui-bar__item_on" >
+        <i class="iconfont">&#xe621;</i>
+        <p class="weui-tabbar__label">首页</p>
+      </a>
+    <% } else { %>
+      <a href="/" class="weui-tabbar__item" >
+        <i class="iconfont">&#xe621;</i>
+        <p class="weui-tabbar__label">首页</p>
+    </a>
+    <% } %>
+
+    <% if (index == 2){ %>
+    <a href="/branchType" class="weui-tabbar__item weui-bar__item_on">
+      <i class="iconfont">&#xe6b8;</i>
+      <p class="weui-tabbar__label">分类</p>
+    </a>
+    <% } else { %>
+      <a href="/branchType" class="weui-tabbar__item">
+        <i class="iconfont">&#xe6b8;</i>
+        <p class="weui-tabbar__label">分类</p>
+      </a>
+     <% } %>
+
+    <% if (index == 3){ %>
+    <a href="/cart" class="weui-tabbar__item weui-bar__item_on">
+      <i class="iconfont">&#xe606;</i>
+      <p class="weui-tabbar__label">购物车</p>
+    </a>
+    <% } else { %>
+      <a href="/cart" class="weui-tabbar__item">
+        <i class="iconfont">&#xe606;</i>
+        <p class="weui-tabbar__label">购物车</p>
+      </a>
+    <% } %>
+
+    <% if (index == 4){ %>
+      <a href="/my" class="weui-tabbar__item weui-bar__item_on">
+        <i class="iconfont">&#xe61d;</i>
+        <p class="weui-tabbar__label">我的</p>
+      </a>
+     <% } else { %>
+      <a href="/my" class="weui-tabbar__item">
+        <i class="iconfont">&#xe61d;</i>
+        <p class="weui-tabbar__label">我的</p>
+      </a>
+      <% } %>
+</div>

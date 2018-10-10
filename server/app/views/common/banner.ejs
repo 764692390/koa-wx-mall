@@ -1,0 +1,14 @@
+<% if(bannerList) { %>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <% for( let i=0; i < bannerList.length; i++){ %>
+        <div class="swiper-slide">
+            <img src="<%= bannerList[i].pic %>" width="100%">
+        </div>
+        <% } %>
+    </div>
+    <div class="swper-radius"></div>
+    <!-- 分页器 -->
+    <div class="swiper-pagination"></div>
+</div>
+<% } %>
