@@ -15,13 +15,13 @@ const baseFields = {
   },
 }
 
-const createSchema = (table, fields, options = {}) => {
+const createSchema = (table, fields, options = { freezeTableName: true }) => {
   return sequelize.define(table, {
     ...baseFields,
-    ...fields
+    ...fields,
   }, options)
 }
-
+ 
 // test connection
 sequelize
   .authenticate()

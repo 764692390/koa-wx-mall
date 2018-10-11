@@ -1,6 +1,8 @@
+import config from '../../config'
 import { User } from '../../models'
 import BaseServices from '../base-services'
 import md5 from 'md5'
+import request from 'request'
 import uuidv1 from 'uuid/v1';
 
 class Services extends BaseServices {
@@ -10,30 +12,31 @@ class Services extends BaseServices {
 
   // 创建用户
   create = async params => {
-
-    let password = md5(params.password);
-    params.password = password;
-
-    let uid = await uuidv1();
-
-    params.pic = "/images/head/bear.jpg"
-
-    params.uid = uid;
-
-    params.type = 0
-
-    params.vip = 0
-
-    params.status = 1
-
     const data = await this._model.create(params);
     return data 
   }
 
-  //通过手机号查找用户
-  findPhone = async params => {
+  //通过OpenId查找用户
+  findOpenId = async params => {
     const data = await this._model.findAll(params);
     return data 
+  }
+
+  // 通过code获取openId
+  getOpenId = code => {
+    return new Promise(function (resolve, reject) {
+      request({ 
+          url: `${config.wx.js_code_url}&appid=${config.wx.appid}&secret=${config.wx.secret}&js_code=${code}`
+      }, function (error, response, body) {
+        if (!error) {
+          let reslut = JSON.parse(response.body)
+          resolve(reslut);
+        }
+        else {
+          reject(`===${error}===`);
+        }
+      });
+    })
   }
 }
 

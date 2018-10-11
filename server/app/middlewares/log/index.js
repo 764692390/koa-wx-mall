@@ -16,9 +16,17 @@ export default () => {
         if (ctx.response.status > 399) {
             console.log(`  --->${method} ${status} ${url}  ${t}ms` ['red']);
             if(ctx.response.status > 499){
-                await ctx.render("500");
+                ctx.body = { 
+                    'errno': "1", 
+                    'errmsg': false,
+                    'message':'系统开小差了500'
+                }
             } else {
-                await ctx.render("404");
+                ctx.body = { 
+                    'errno': "1", 
+                    'errmsg': false,
+                    'message':'系统开小差了404' 
+                }
             }
             
         } else {

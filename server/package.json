@@ -13,7 +13,6 @@
     "@koa/cors": "^2.2.1",
     "captchapng": "^0.0.1",
     "colors": "^1.2.4",
-    "ejs": "^2.6.1",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.0",
     "koa-generic-session": "^2.0.1",

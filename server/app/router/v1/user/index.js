@@ -3,11 +3,9 @@ import { user } from '../../../controllers'
 const router = koaRouter()
 
 router
-  .get('/',user.getUser)
-  .get('/signOut',user.signOut)
-  .get('/code',user.setCode)
-  .post('/register', user.register)
-  .post('/signIn', user.signIn)
-
+  .get('/getUserList',user.getList) // 获取用户列表
+  .get('/codeToOpenId',user.codeToOpenId) // 通过code获取用户openId
+  .post('/register', user.register) // 注册
+ 
 
 export default router

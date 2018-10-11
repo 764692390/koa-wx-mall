@@ -8,14 +8,14 @@ import Sequelize from 'sequelize';
  */
 const errmsg = {
   1030:{
-    errno: 1030, errmsg: false, message: '系统开小差了，未查到当前商品id!'   //  api/v1/shop/Detail/1262  【商品id不存在】
+    'errno': 1030, 'errmsg': false, 'message': '系统开小差了!'   //  api/v1/shop/Detail/1262  【商品id不存在】
   }
 }
 
 const res = data => {
   let info = {
     "errno":"0",
-    "errmsg":"success",
+    "errmsg": true,
   };
   if (data && !data.data.code) {
     info.data = data.data;
@@ -25,6 +25,15 @@ const res = data => {
   return info;
 };
 
+const resError = data => {
+    let info = {
+      "errno":"1",
+      "errmsg": false,
+      data
+    };
+    return info;
+  };
+
 const err = error => {
   if (error instanceof Sequelize.ValidationError) {
     return { errno: 1003, errmsg: error.errors[0].message };
@@ -33,4 +42,4 @@ const err = error => {
   }
 };
 
-export { res, err };
+export { res, resError, err };

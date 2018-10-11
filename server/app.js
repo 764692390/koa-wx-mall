@@ -1,7 +1,5 @@
 import Koa from 'koa'
-import koaRouter from 'koa-router'
 import bodyParser from 'koa-bodyparser'
-import views from 'koa-views'
 import koaStatic from 'koa-static'
 import cors from '@koa/cors'
 import session from 'koa-session'

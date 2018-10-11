@@ -23,9 +23,8 @@ Page({
     let userInfo = wx.getStorageSync('userInfo')
     wx.login({
         success: function (res) {
-          console.log(res)
           wx.request({
-            url: 'https://lz.jczxw.cn/api/users/codeToUserInfo?',
+            url: 'https://lz.jczxw.cn/api/v1/user/codeToOpenId',
             data: {
                 code: res.code,
             },
@@ -33,7 +32,22 @@ Page({
                 'content-type': 'application/json'
             },
             success: function(res) {
-              console.log(res)
+              if( res.data.data.openid){
+                wx.request({
+                    method: "POST",
+                    url: 'https://lz.jczxw.cn/api/v1/user/register',
+                    data: {
+                        openId: res.data.data.openid,
+                        ...userInfo
+                    },
+                    header: {
+                        'content-type': 'application/json'
+                    },
+                    success: function(res) {
+                        console.log(res);
+                    }
+                })    
+              }
             }
           })
         }

@@ -5,7 +5,7 @@ import BaseModel from '../base-model'
 const schema = createSchema('user', {
   openId: Sequelize.STRING,
   nickName: Sequelize.STRING,
-  acatarUrl: Sequelize.STRING,
+  avatarUrl: Sequelize.STRING,
   language: Sequelize.STRING,
   country: Sequelize.STRING,
   city: Sequelize.STRING,
