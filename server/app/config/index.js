@@ -15,7 +15,7 @@ export default {
     wx:{
         // appid secret js_code
         js_code_url: 'https://api.weixin.qq.com/sns/jscode2session?grant_type=authorization_code',
-        appid: 'wx7b70adca5acc463e',
-        secret: 'c8590766ee5e6737eaf0fd0d5c14cd74' 
+        appid: 'wx1f26b2870dc53c9a',
+        secret: '0ed137858bdc837d8de26b9237506837' 
     }
 }

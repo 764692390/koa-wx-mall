@@ -1,8 +1,10 @@
 import { res, err } from '../../libs/format';
+import Redis from '../../db/redis'
 
 class BaseController {
   constructor(services) {
     this._services = new services
+    this.Redis = Redis;
   }
 
   find = async ctx => {

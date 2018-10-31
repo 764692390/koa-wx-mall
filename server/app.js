@@ -2,29 +2,38 @@ import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import koaStatic from 'koa-static'
 import cors from '@koa/cors'
-import session from 'koa-session'
+// import session from 'koa-session'
 import router from './app/router';
 import config from './app/config';
 import log from './app/middlewares/log';
+import session from 'koa-session-redis';
+
 
 const app = new Koa();
 
 app.keys = ['keys', 'keykeys'];
-const CONFIG = {
-    key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
-    maxAge: 86400000,
-    overwrite: true, /** (boolean) can overwrite or not (default true) */
-    httpOnly: true, /** (boolean) httpOnly or not (default true) */
-    signed: true, /** (boolean) signed or not (default true) */
-    rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
-    renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
-  };
+// const CONFIG = {
+//     key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
+//     maxAge: 86400000,
+//     overwrite: true, /** (boolean) can overwrite or not (default true) */
+//     httpOnly: true, /** (boolean) httpOnly or not (default true) */
+//     signed: true, /** (boolean) signed or not (default true) */
+//     rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. (default is false) */
+//     renew: false, /** (boolean) renew session when session is nearly expired, so we can always keep user logged in. (default is false)*/
+//   };
+app.use(session({
+    store: {
+        host: '127.0.0.1',
+        port: 6379,
+        ttl: 3600*24,
+    },
+}));
 
 app
     .use(log())
     .use(cors())
     .use(bodyParser())
-    .use(session(CONFIG, app))
+    // .use(session(CONFIG, app))
     .use(koaStatic(__dirname + "/app/public"))
     .use(router.routes(), router.allowedMethods())
 
