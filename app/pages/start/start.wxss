@@ -60,7 +60,7 @@ page{
 }
 .title{
   position: absolute;
-  top: 30rpx;
+  top: 110rpx;
   left: 50%;
   width: 600rpx;
   height: 200rpx;

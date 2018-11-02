@@ -1,11 +1,28 @@
 page{
     height: 100%;
+    background-color: #fff;
 }
 .container{
-    background-color: #f5f5f9;
+    background-color: #fff;
     justify-content: initial;
 }
+.header{
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 110rpx;
+    line-height: 110rpx;
+    width: 100%;
+    padding-top: 40rpx;
+    background: #69c3aa;
+    color: #fff;
+    text-align: center;
+    font-size:36rpx;
+    z-index: 1;
+}
 .form-box{
+    position: relative;
+    top:150rpx;
     width:100%;
     background-color: #fff;
     margin-top: 20rpx;
@@ -52,7 +69,7 @@ page{
     box-sizing: border-box;
 }
 .save-btn{
-    background-color: #e64340;
+    background-color: #69c3aa;
     color:#fff;
 }
 button[type="default"]{

@@ -8,14 +8,14 @@ Page({
     userInfo: {}
   },
   goToIndex:function(){
-    // wx.switchTab({
-    //   url: '/pages/index/index',
-    // });
-    wx.showModal({
-        title: '提示',
-        content: '博客开发中...',
-        showCancel: false
+    wx.navigateTo({
+        url: "/pages/index/index"
     })
+    // wx.showModal({
+    //     title: '提示',
+    //     content: '博客开发中...',
+    //     showCancel: false
+    // })
   },
   onLoad:function(){
     var that = this

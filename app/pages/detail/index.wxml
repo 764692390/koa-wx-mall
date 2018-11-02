@@ -1,0 +1,8 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="container">
+    <view class="header" ><image bindtap="bark" class="bark-img" src="/images/back.png"></image>详情</view>
+    <view class="goods-container" wx:if="{{ Article != false}}">
+        <view class="goods-title">{{Article.title}}</view>
+        <template is="wxParse" data="{{wxParseData:html.nodes}}"/>
+    </view>
+</view>

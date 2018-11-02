@@ -10,3 +10,5 @@
 .wxParse-img {
   display: block !important;
 }
+
+@import "./wxParse/wxParse.wxss";
