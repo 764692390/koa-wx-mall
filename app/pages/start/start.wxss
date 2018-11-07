@@ -2,8 +2,9 @@
 page{
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   font-size: 10pt;
-  line-height: 150%;
-  min-height: 100%;
+  height: 100%;
+  width:100%;
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -17,6 +18,7 @@ page{
   background: #69C3AA;
   align-items: stretch;
   padding: 0;
+  width:100%;
   height: 100%;
   overflow: hidden;
   justify-content: space-between;
@@ -37,6 +39,7 @@ page{
   opacity: 0;
   transform: translate3d(0,100%,0);
   animation: rise 3s cubic-bezier(0.19, 1, 0.22, 1) .25s forwards;
+  overflow: initial 
 }
 
 .remind-box {
@@ -93,6 +96,7 @@ page{
   margin-left: -500rpx;
   height: 200rpx;
   transition: all .35s ease;
+  overflow: initial 
 }
 .logo {
   position: absolute;

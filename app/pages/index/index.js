@@ -91,7 +91,8 @@ Page({
     })
   },
   // 上拉加载
-  onReachBottom: function () {
+  onReachBottom: function (e) {
+      console.log(e);
       if(this.data.pagesize >= this.data.index) {
         this.setData({
             index: this.data.index+1
@@ -100,7 +101,8 @@ Page({
       }
   },
   // 下拉刷新
-  onPullDownRefresh: function(){
+  onPullDownRefresh: function(e){
+    console.log(e);
     this.setData({
         index:1,
     });

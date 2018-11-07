@@ -4,6 +4,6 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh":true,
-    "onReachBottomDistance":50,
+    "onReachBottomDistance":200,
     "navigationStyle":"default"
   }

@@ -26,37 +26,6 @@ Page({
   onShow:function(){
     let that = this
     let userInfo = wx.getStorageSync('userInfo')
-    // wx.login({
-    //     success: function (res) {
-    //       wx.request({
-    //         url: 'https://lz.jczxw.cn/api/v1/user/codeToOpenId',
-    //         data: {
-    //             code: res.code,
-    //         },
-    //         header: {
-    //             'content-type': 'application/json'
-    //         },
-    //         success: function(res) {
-    //           if( res.data.data.openid){
-    //             wx.request({
-    //                 method: "POST",
-    //                 url: 'https://lz.jczxw.cn/api/v1/user/register',
-    //                 data: {
-    //                     openId: res.data.data.openid,
-    //                     ...userInfo
-    //                 },
-    //                 header: {
-    //                     'content-type': 'application/json'
-    //                 },
-    //                 success: function(res) {
-    //                     console.log(res);
-    //                 }
-    //             })    
-    //           }
-    //         }
-    //       })
-    //     }
-    // })
     console.log(userInfo);
     if (!userInfo) {
     //   wx.navigateTo({
