@@ -43,6 +43,11 @@ Page({
       scrollTop: e.scrollTop
     })
    },
+   barkToStart: function(event){
+        wx.navigateTo({
+            url: '../start/start'
+        })
+   },
    toDetailsTap: function(event) {
         wx.navigateTo({
             url: '../detail/index?id=' + event.currentTarget.dataset.id

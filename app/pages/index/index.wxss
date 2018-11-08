@@ -20,6 +20,22 @@ page{
     z-index: 1;
 }
 
+.bark-img-box{
+    width: 100rpx;
+    height: 150rpx;
+    position: absolute;
+    left: 40rpx;
+    top:0;
+    z-index: 1;
+}
+.bark-img{
+    width: 22rpx;
+    height: 40rpx;
+    position: absolute;
+    top:80rpx;
+    left: 0rpx;
+}
+
 .goods-container{
   padding-top:150rpx;
   position: relative;

@@ -1,6 +1,9 @@
 <wxs module="dateUtil" src="../../filter/timeUtil.wxs"></wxs>
 
-<view class="header">小李Blog</view>
+<view class="header">
+    <view bindtap="barkToStart" class="bark-img-box"><image class="bark-img" src="/images/back.png"></image></view>
+    小李Blog
+</view>
 <view class="goods-container">
     <view class="goods-box" wx:for-items="{{ArticlePage}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item._id}}">
         <view class="img-box">
