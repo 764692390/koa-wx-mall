@@ -1,20 +1,17 @@
-<!--index.wxml-->
-<!--1px=750/320=2.34rpx;
--->
 <wxs module="dateUtil" src="../../filter/timeUtil.wxs"></wxs>
-<view class="container">
-    <view class="header">小李Blog</view>
-    <view class="goods-container">
-        <view class="goods-box" wx:for-items="{{ArticlePage}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item._id}}">
-            <view class="img-box">
-                <image src="https://blog.jczxw.cn{{item.coverImg}}" class="image" mode="widthFix" lazy-load="true" />
-            </view>
-            <view class="goods-right">
-                <view class="goods-title">{{item.title}}</view>
-                <view class="goods-text">{{item.abstract}}</view>
-                <view class="goods-timer">{{ dateUtil.dateFormat(item.addtime)}}</view>
-            </view>
+
+<view class="header">小李Blog</view>
+<view class="goods-container">
+    <view class="goods-box" wx:for-items="{{ArticlePage}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item._id}}">
+        <view class="img-box">
+            <image src="https://blog.jczxw.cn{{item.coverImg}}" class="image" mode="widthFix" lazy-load="true" />
         </view>
-        <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">我是有底线的</view>
+        <view class="goods-right">
+            <view class="goods-title">{{item.title}}</view>
+            <view class="goods-text">{{item.abstract}}</view>
+            <view class="goods-timer">{{ dateUtil.dateFormat(item.addtime)}}</view>
+        </view>
     </view>
+    <view hidden="{{loadingMoreHidden ? true : false}}" class="no-more-goods">我是有底线的!</view>
 </view>
+
