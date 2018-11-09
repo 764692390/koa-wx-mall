@@ -9,13 +9,7 @@ router
             {'url':'/api/v1/user/register', name:'注册用户'}
         ] }
   })
-  .post('a', (ctx, next) => {
-      console.log(ctx.request.query.a);
-    ctx.body  = { 'errno': 1, 'errmsg': 'Api接口',data:[
-        {'url':'/api/v1/user/codeToOpenId?code=333', name:'通过code获取openid'},
-        {'url':'/api/v1/user/register', name:'注册用户'}
-    ] }
-})
+
   
 
 export default router;

@@ -1,3 +1,4 @@
 import User from './user';
+import adminUser from './admin-user';
 
-export {  User,  };
+export {  User, adminUser };
