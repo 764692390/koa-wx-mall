@@ -1,6 +1,4 @@
 import Main from '@/components/main'
-import parentView from '@/components/parent-view'
-
 /**
  * iview-admin中meta除了原生参数外可配置的参数:
  * meta: {
@@ -76,60 +74,25 @@ export default [
           title: '拖拽列表'
         },
         component: () => import('@/view/components/drag-list/drag-list.vue')
-      },
+      }
+    ]
+  },
+  {
+    path: '/error_store',
+    name: 'error_store',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
       {
-        path: 'cropper_page',
-        name: 'cropper_page',
+        path: 'error_store_page',
+        name: 'error_store_page',
         meta: {
-          icon: 'md-crop',
-          title: '图片裁剪'
+          icon: 'ios-bug',
+          title: '错误收集'
         },
-        component: () => import('@/view/components/cropper/cropper.vue')
-      },
-      {
-        path: 'tables_page',
-        name: 'tables_page',
-        meta: {
-          icon: 'md-grid',
-          title: '多功能表格'
-        },
-        component: () => import('@/view/components/tables/tables.vue')
-      },
-      {
-        path: 'split_pane_page',
-        name: 'split_pane_page',
-        meta: {
-          icon: 'md-pause',
-          title: '分割窗口'
-        },
-        component: () => import('@/view/components/split-pane/split-pane.vue')
-      },
-      {
-        path: 'markdown_page',
-        name: 'markdown_page',
-        meta: {
-          icon: 'logo-markdown',
-          title: 'Markdown编辑器'
-        },
-        component: () => import('@/view/components/markdown/markdown.vue')
-      },
-      {
-        path: 'editor_page',
-        name: 'editor_page',
-        meta: {
-          icon: 'ios-create',
-          title: '富文本编辑器'
-        },
-        component: () => import('@/view/components/editor/editor.vue')
-      },
-      {
-        path: 'icons_page',
-        name: 'icons_page',
-        meta: {
-          icon: '_bear',
-          title: '自定义图标'
-        },
-        component: () => import('@/view/components/icons/icons.vue')
+        component: () => import('@/view/error-store/error-store.vue')
       }
     ]
   },

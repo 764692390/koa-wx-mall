@@ -19,7 +19,8 @@ export default {
     }
   },
   getters: {
-    getUserInfo: state => state.userInfo
+    getUserInfo: state => state.userInfo,
+    messageUnreadCount: state => 3
   },
   actions: {
     // 登录
