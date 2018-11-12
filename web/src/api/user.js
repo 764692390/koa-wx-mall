@@ -11,3 +11,10 @@ export const login = ({ userName, password }) => {
     method: 'post'
   })
 }
+
+export const getUserInfo = () => {
+  return axios.request({
+    url: '/adminUser/getUserInfo',
+    method: 'get'
+  })
+}

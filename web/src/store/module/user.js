@@ -1,5 +1,6 @@
 import {
-  login
+  login,
+  getUserInfo
 } from '@/api/user'
 
 import { setToken, getToken } from '@/libs/util'
@@ -33,6 +34,7 @@ export default {
         }).then(res => {
           const data = res.data
           commit('setToken', data.token || '')
+          commit('setUserInfo', data || null )
           resolve(data)
         }).catch(err => {
           reject(err)
@@ -42,6 +44,12 @@ export default {
     // 退出登录
     handleLogOut ({ state, commit }) {
       commit('setToken', '')
+    },
+    // 获取用户基本信息
+    getUserinfoFn({ state, commit }) {
+      getUserInfo().then(res => {
+        commit('setUserInfo', res.data.data)
+      })
     }
   }
 }

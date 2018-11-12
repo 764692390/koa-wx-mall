@@ -8,6 +8,7 @@ class BaseServices {
     }
 
     find = async (id) => {
+        console.log(id)
         const data = await this._model.find(id)
         return data
     }
@@ -39,6 +40,7 @@ class BaseServices {
 
     /* 分页 */
     getList = async ctx => {
+        console.log('---------------------------server')
         const data = await this._model.getList(ctx)
         return data 
     }

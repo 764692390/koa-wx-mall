@@ -68,6 +68,13 @@ class Controller extends BaseController {
         ctx.body = result
     }
 
+    // 获取用户基本信息
+    getUserInfo = async ctx => {
+        let userInfo = await this._services.tokenToUserInfo(ctx);
+        let data = { 'errno': 0, 'errmsg': true, data: userInfo } ;
+        ctx.body = data;       
+    }
+
 }
 
 export default new Controller

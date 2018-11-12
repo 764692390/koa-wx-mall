@@ -78,7 +78,7 @@ export default {
       return this.$store.state.app.tagRouter
     },
     userAvator () {
-      return this.$store.state.user.avatorImgPath
+      return this.$store.state.user.userInfo !== null ? this.$store.state.user.userInfo.user_img : null
     },
     cacheList () {
       return ['ParentView', ...this.tagNavList.length ? this.tagNavList.filter(item => !(item.meta && item.meta.notCache)).map(item => item.name) : []]
@@ -102,7 +102,8 @@ export default {
       'setHomeRoute'
     ]),
     ...mapActions([
-      'handleLogin'
+      'handleLogin',
+      'getUserinfoFn'
     ]),
     turnToPage (route) {
       let { name, params, query } = {}
@@ -156,6 +157,7 @@ export default {
     /**
      * @description 初始化设置面包屑导航和标签导航
      */
+    this.getUserinfoFn();
     this.setTagNavList()
     this.setHomeRoute(routers)
     this.addTag({

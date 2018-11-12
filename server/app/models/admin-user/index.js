@@ -5,6 +5,7 @@ import BaseModel from '../base-model'
 const schema = createSchema('admin_user', {
   userName: Sequelize.STRING,
   password: Sequelize.STRING,
+  user_img: Sequelize.STRING,
   status  : Sequelize.INTEGER,
   sort    : Sequelize.INTEGER,
 })

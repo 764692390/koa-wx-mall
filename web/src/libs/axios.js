@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import Cookies from 'js-cookie'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
   const { statusText, status, request: { responseURL } } = errorInfo
@@ -21,7 +22,7 @@ class HttpRequest {
     const config = {
       baseURL: this.baseUrl,
       headers: {
-        //
+        Authorization: `Bearer ${Cookies.get('token')}`
       }
     }
     return config
@@ -48,6 +49,9 @@ class HttpRequest {
     instance.interceptors.response.use(res => {
       this.destroy(url)
       const { data, status } = res
+      if (data.code === -1) {
+        Cookies.set('token', '')
+      }
       return { data, status }
     }, error => {
       this.destroy(url)

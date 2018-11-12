@@ -14,8 +14,8 @@ class BaseModel {
    * @param {Number} id 
    * @return {Object} 单个Model
    */
-  find = async id => {
-    return this._schema.find(id)
+  find = async where => {
+    return this._schema.find({ where, order: [['sort','DESC']] })
   }
 
   /**
