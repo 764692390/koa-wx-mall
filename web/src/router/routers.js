@@ -44,7 +44,7 @@ export default [
           notCache: true,
           icon: 'md-home'
         },
-        component: () => import('@/view/single-page/home')
+        component: () => import('@/view/home')
       }
     ]
   },
@@ -64,7 +64,7 @@ export default [
           icon: 'md-trending-up',
           title: '数字渐变'
         },
-        component: () => import('@/view/components/count-to/count-to.vue')
+        component: () => import('@/view/home')
       },
       {
         path: 'drag_list_page',
@@ -73,7 +73,7 @@ export default [
           icon: 'ios-infinite',
           title: '拖拽列表'
         },
-        component: () => import('@/view/components/drag-list/drag-list.vue')
+        component: () => import('@/view/home')
       }
     ]
   },
@@ -92,7 +92,7 @@ export default [
           icon: 'ios-bug',
           title: '错误收集'
         },
-        component: () => import('@/view/error-store/error-store.vue')
+        component: () => import('@/view/home')
       }
     ]
   },
