@@ -8,6 +8,14 @@ export const workUserAdd = (data) => {
   })
 }
 
+export const workUserUpdata = (data) => {
+  return axios.request({
+    url: '/workUser/updata',
+    method: 'post',
+    data
+  })
+}
+
 export const workUserGetList = (data) => {
   return axios.request({
     url: '/workUser/getList',

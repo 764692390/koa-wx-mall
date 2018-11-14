@@ -38,7 +38,7 @@ class Controller extends BaseController {
         let result
 
         try {
-            const data = await this._services.update({ ...params });
+            const data = await this._services.update(params.id, { ...params }); 
             result = res({ data })
 
         } catch (e) {
@@ -52,9 +52,7 @@ class Controller extends BaseController {
     getList = async ctx => {
         let result
         try {
-            console.log(this._services)
             const data = await this._services.getList(ctx);
-            console.log(data)
             result = res({ data })
 
         } catch (e) {

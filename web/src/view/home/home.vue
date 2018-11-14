@@ -9,6 +9,11 @@
                       </FormItem>
                     </Col>
                     <Col span="8">
+                      <FormItem label="手机号">
+                        <Input v-model="formTop.phone" placeholder="请输入手机号"></Input>
+                      </FormItem>
+                    </Col>
+                    <Col span="8">
                       <FormItem label="是否面试通过">
                         <Select v-model="formTop.isThrough" placeholder="是否面试通过">
                           <Option :value="'1'">是</Option>
@@ -16,38 +21,30 @@
                         </Select>
                       </FormItem>
                     </Col>
-                    <Col span="8">
+                    <!-- <Col span="8">
                       <FormItem label="是否在职">
                         <Select v-model="formTop.isJob" placeholder="是否在职">
                           <Option :value="1">在职</Option>
                           <Option :value="0">离职</Option>
                         </Select>
                       </FormItem>
-                    </Col>
-                </Row>
-
-                <Row>
-                    <Col span="8">
-                      <FormItem label="手机号">
-                        <Input v-model="formTop.phone" placeholder="请输入手机号"></Input>
-                      </FormItem>
-                    </Col>
-                    <Col span="8">
+                    </Col> -->
+                    <!-- <Col span="8">
                       <FormItem label="面试时间">
                         <div class="cl">
                             <div class="fl" style="width:46%">
-                                <DatePicker v-model="formTop.InterviewTimer_Start" @on-change="changStartTimer" format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
+                                <DatePicker v-model="formTop.InterviewTimer_Start" @on-change="InterviewTimerStart" format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
                                 </DatePicker>
                             </div>
                             <span class="fl" style="text-align: center;width: 8%;color: #999;"> 一 </span>
                             <div class="fr" style="width:46%">
-                                <DatePicker v-model="formTop.InterviewTimer_End" @on-change="changEndTimer" format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
+                                <DatePicker v-model="formTop.InterviewTimer_End" @on-change="InterviewTimerEnd" format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
                                 </DatePicker>
                             </div>
                         </div>
                       </FormItem>
-                    </Col>
-                    <Col span="8">
+                    </Col> -->
+                    <!-- <Col span="8">
                         <FormItem label="入职时间">
                           <div class="cl">
                                 <div class="fl" style="width:46%">
@@ -61,9 +58,7 @@
                                 </div>
                             </div>
                         </FormItem>
-                    </Col>
-                </Row>
-                 <Row>
+                    </Col> -->
                    <Col span="8">
                       <FormItem label="职位">
                         <Select v-model="formTop.jobPosition" placeholder="职位">
@@ -75,15 +70,15 @@
                         </Select>
                       </FormItem>
                     </Col> 
-                    <Col span="8">
+                    <!-- <Col span="8">
                       <FormItem label="是否转正">
                         <Select v-model="formTop.isBecome" placeholder="是否转正">
                           <Option :value="'1'">是</Option>
                           <Option :value="'0'">否</Option>
                         </Select>
                       </FormItem>
-                    </Col> 
-                    <Col span="8">
+                    </Col>  -->
+                    <Col span="8"  style="float: right;">
                         <FormItem label="" style="text-align: right; margin-top:23px;" >
                             <Button type="primary" @click="openModel1">新增人员</Button>
                             <Button class="mar-l-10"  type="primary" @click="getList">查询</Button>
@@ -105,10 +100,11 @@
             </div>
         </div>
 
-        <!--新增-->
+        <!--新增 和 修改-->
         <Modal
             v-model="modal1"
-            title="新增"
+            className="vertical-center-model"
+            :title="TitleText"
             width="800"
             @on-ok="ADDok"
             @on-cancel="ADDcancel">
@@ -118,12 +114,13 @@
                       <FormItem label="姓名">
                         <Input v-model="addFrom.userName" placeholder="请输入姓名"></Input>
                       </FormItem>
+                      
                     </Col>
                     <Col span="8">
                       <FormItem label="是否面试通过">
                         <Select v-model="addFrom.isThrough" placeholder="是否面试通过">
-                          <Option :value="'1'">是</Option>
-                          <Option :value="'0'">否</Option>
+                          <Option :value="1">是</Option>
+                          <Option :value="0">否</Option>
                         </Select>
                       </FormItem>
                     </Col>
@@ -153,7 +150,7 @@
                     <Col span="8">
                       <FormItem label="面试时间">
                         <div class="cl">
-                            <DatePicker v-model="addFrom.InterviewTimer" @on-change="changStartTimer" format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
+                            <DatePicker v-model="addFrom.InterviewTimer" format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
                             </DatePicker>
                         </div>
                       </FormItem>
@@ -161,7 +158,7 @@
                     <Col span="8">
                         <FormItem label="入职时间">
                           <div class="cl">
-                                <DatePicker v-model="addFrom.EntryTimer" @on-change="changStartTimer" format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
+                                <DatePicker v-model="addFrom.EntryTimer"  format="yyyy-MM-dd" type="date" placeholder="选择开始日期" style="width: 100%">
                                 </DatePicker>
                             </div>
                         </FormItem>
@@ -169,20 +166,25 @@
                    <Col span="8">
                       <FormItem label="职位">
                         <Select v-model="addFrom.jobPosition" placeholder="职位">
-                          <Option :value="'0'">web前端工程师</Option>
-                          <Option :value="'1'">java工程师</Option>
-                          <Option :value="'2'">测试工程师</Option>
-                          <Option :value="'3'">产品经理</Option>
-                          <Option :value="'4'">设计师</Option>
+                          <Option :value="0">web前端工程师</Option>
+                          <Option :value="1">java工程师</Option>
+                          <Option :value="2">测试工程师</Option>
+                          <Option :value="3">产品经理</Option>
+                          <Option :value="4">设计师</Option>
                         </Select>
                       </FormItem>
                     </Col> 
                     <Col span="8">
                       <FormItem label="是否转正">
                         <Select v-model="addFrom.isBecome" placeholder="是否转正">
-                          <Option :value="'1'">是</Option>
-                          <Option :value="'0'">否</Option>
+                          <Option :value="1">是</Option>
+                          <Option :value="0">否</Option>
                         </Select>
+                      </FormItem>
+                    </Col> 
+                    <Col span="24">
+                      <FormItem label="备注">
+                        <Input v-model="addFrom.Remarks" type="textarea" :rows="3" placeholder="请输入备注"></Input>
                       </FormItem>
                     </Col> 
                   </Row>
@@ -194,22 +196,79 @@
         <Modal
             v-model="modal2"
             title="详情"
-            @on-ok="dataok"
-            @on-cancel="cancel">
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
-            <p>Content of dialog</p>
+            width="800"
+            >
+            <Row v-if="modal2" class="datail-box">
+                    <Col span="8">
+                        <i>姓名：</i>
+                        <span>{{detailModelData.userName}}</span>
+                    </Col>
+                    <Col span="8">
+                        <i>是否面试通过：</i>
+                        <span>{{detailModelData.isThrough == 1 ? '是' : '否' }}</span>
+                    </Col>
+                    <Col span="8">
+                        <i>是否在职：</i>
+                        <span>{{detailModelData.isJob == 1 ? '在职' : '否' }}</span>
+                    </Col>
+                    <Col span="8">
+                        <i>手机号：</i>
+                        <span>{{detailModelData.phone}}</span>
+                    </Col>
+                    <Col span="8">
+                        <i>期望薪资：</i>
+                        <span>{{detailModelData.Expect_salary}}</span>
+                    </Col>
+                    <Col span="8">
+                        <i>薪资：</i>
+                        <span>{{detailModelData.salary}}</span>
+                    </Col>
+                    <Col span="8">
+                        <i>面试时间：</i>
+                        <span>{{getDateToHtml(detailModelData.InterviewTimer).split(' ')[0]}}</span>
+                    </Col>
+                    <Col span="8">
+                        <i>入职时间：</i>
+                        <span>{{getDateToHtml(detailModelData.EntryTimer).split(' ')[0]}}</span>
+                    </Col>
+                   <Col span="8">
+                        <i>职位：</i>
+                        <span>
+                            {{ 
+                                detailModelData.jobPosition == 0 ? 
+                                    'web前端工程师' 
+                                : detailModelData.jobPosition == 1 ?
+                                    'java工程师'
+                                : detailModelData.jobPosition == 2 ?
+                                    '测试工程师'
+                                : detailModelData.jobPosition == 3 ?
+                                    '产品经理'  : '设计师'
+                             }}
+                        </span>
+                    </Col> 
+                    <Col span="8">
+                        <i>是否转正：</i>
+                        <span>{{detailModelData.isBecome == 1 ? '是' : '否'}}</span>
+                    </Col> 
+                    <Col span="24">
+                        <i>备注：</i>
+                        <span>{{detailModelData.Remarks}}</span>
+                    </Col> 
+                  </Row>
         </Modal>
     </div>
 </template>
 
 <script>
-import { workUserAdd, workUserGetList } from '@/api/data.js'
+import { workUserAdd, workUserGetList, workUserUpdata } from '@/api/data.js'
+import { getDateToHtml } from '@/libs/tools.js'
 export default {
   name: "lawperson",
   components: {},
   data() {
     return {
+      getDateToHtml,
+      TitleText: '新增',
       loading: true,
       pageNum: 1, // 当前页面
       pageSize: 10, // 每页显示条数
@@ -239,22 +298,23 @@ export default {
           jobPosition: null, // 工作职位
           salary: null, // 薪资
           Expect_salary: null, // 期望薪资
+          Remarks: null, // 备注
       },
       list: [], //修改
       columns1: [
          {
           title: "姓名",
-          align: "left",
+          align: "center",
           key: "userName",
         },
          {
           title: "手机号",
-          align: "left",
+          align: "center",
           key:'phone',
         },
         {
           title: "职位",
-          align: "left",
+          align: "center",
           render: (h, params) => {
             if (params.row.jobPosition === 0) {
               return h("div", {}, "web前端工程师");
@@ -271,41 +331,81 @@ export default {
         },
         {
           title: "面试时间",
-          align: "left",
+          align: "center",
           key: "InterviewTimer",
+          render: (h, params) => {
+                return h("div", {}, getDateToHtml(params.row.InterviewTimer).split(' ')[0]);
+          }     
         },
          {
           title: "是否通过",
-          align: "left",
+          align: "center",
           key: "isThrough",
           render: (h, params) => {
               if (params.row.isThrough === 0) {
-                return h("div", {}, "面试不通过");
+                return h("Tag", { props: { color:"warning"}}, "面试不通过");
               } else {
-                return h("div", {}, "通过");  
+                return h("Tag", { props: { color:"success"}}, "通过");
               }
           }
         },
         {
+            // 
           title: "操作",
           align: "center",
           render: (h, params) => {
             return h("div", [
-              // h('Icon',{
-              //     attrs:{
-              //         type:'ios-create-outline',
-              //         style:'font-size:22px;cursor: pointer;'
-              //     }
-              // }),
               h("Icon", {
                 attrs: {
                   type: "ios-eye-outline",
-                  style: "font-size:26px;cursor: pointer; margin-left:8px"
+                  style: "font-size:26px;cursor: pointer; margin-left:8px;margin-top: 4px;"
                 },
                 on: {
                   click: () => {
-                    this.detailModelOpen();
-                    this.detailModelData = params.row;
+                      this.modal2 = true;
+                      this.detailModelData = {
+                          ...params.row
+                      }
+                  }
+                }
+              }),
+              h("Icon", {
+                attrs: {
+                  type: "ios-create-outline",
+                  style: "font-size:22px;cursor: pointer; margin-left:8px"
+                },
+                on: {
+                  click: () => {
+                      this.TitleText = '编辑'
+                      let { 
+                            id,
+                            userName, // 姓名
+                            phone, // 手机号
+                            isThrough,// 面试是否通过
+                            isJob, // 是否在职
+                            InterviewTimer, // 面试时间
+                            EntryTimer, // 入职时间
+                            isBecome, // 是否转正
+                            jobPosition, // 工作职位
+                            salary, // 薪资
+                            Expect_salary, // 期望薪资
+                            Remarks, // 备注
+                        } = params.row
+                      this.addFrom = {
+                            id,
+                            userName, // 姓名
+                            phone, // 手机号
+                            isThrough,// 面试是否通过
+                            isJob, // 是否在职
+                            InterviewTimer, // 面试时间
+                            EntryTimer, // 入职时间
+                            isBecome, // 是否转正
+                            jobPosition, // 工作职位
+                            salary, // 薪资
+                            Expect_salary, // 期望薪资
+                            Remarks, // 备注
+                      },
+                      this.modal1=true; 
                   }
                 }
               })
@@ -325,11 +425,7 @@ export default {
   },
   mounted() {},
   computed: {
-    formatData() {
-      return this.detailModelData
-        ? JSON.parse(this.detailModelData.data)
-        : false;
-    }
+     
   },
   methods: {
     //重置
@@ -382,12 +478,12 @@ export default {
     },
     sortChange() {},
     //  开始时间
-    changStartTimer(ev) {
-      this.$set(this.formTop, "startCreateTime", ev);
+    InterviewTimerStart(ev) {
+      this.$set(this.formTop, "InterviewTimer_Start", ev);
     },
-    //  开始时间
-    changEndTimer(ev) {
-      this.$set(this.formTop, "endCreateTime", ev);
+    //  结束时间
+    InterviewTimerEnd(ev) {
+      this.$set(this.formTop, "InterviewTimer_End", ev);
     },
     //查看
     detailModelOpen() {
@@ -395,13 +491,33 @@ export default {
     },
     // 打开新增
     openModel1(){
-        this.modal1=true;
+        this.TitleText = '新增'
+        this.addFrom = {
+          userName: null, // 姓名
+          phone: null, // 手机号
+          isThrough: null,// 面试是否通过
+          isJob: null, // 是否在职
+          InterviewTimer: null, // 面试时间
+          EntryTimer: null, // 入职时间
+          isBecome: null, // 是否转正
+          jobPosition: null, // 工作职位
+          salary: null, // 薪资
+          Expect_salary: null, // 期望薪资
+          Remarks: null, // 备注
+        },
+        this.modal1=true; 
     },
     // 新增确定
     ADDok(ev) {
-        workUserAdd(this.addFrom).then( res => {
-           this.init();
-        })
+        if(this.addFrom.id) {
+            workUserUpdata(this.addFrom).then( res => {
+                this.init();
+            })
+        } else {
+            workUserAdd(this.addFrom).then( res => {
+                this.init();
+            })
+        }
     },
     // 新增关闭
     ADDcancel(ev){
@@ -434,6 +550,16 @@ export default {
 
 .mar-l-10{
   margin-left: 10px;
+}
+
+.datail-box .ivu-col{
+     margin-bottom: 20px;
+}
+.datail-box .ivu-col i{
+    color: rgba(0,0,0,0.45);
+}
+.datail-box .ivu-col span{
+    padding-left: 6px;
 }
 </style>
 

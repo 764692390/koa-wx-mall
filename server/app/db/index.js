@@ -32,5 +32,5 @@ sequelize
     console.error('Sequelize: Unable to connect to the database:', err);
   });
 
-export { createSchema }
+export { createSchema, sequelize }
 export default sequelize

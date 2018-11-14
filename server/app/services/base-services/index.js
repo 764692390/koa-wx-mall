@@ -40,7 +40,6 @@ class BaseServices {
 
     /* 分页 */
     getList = async ctx => {
-        console.log('---------------------------server')
         const data = await this._model.getList(ctx)
         return data 
     }

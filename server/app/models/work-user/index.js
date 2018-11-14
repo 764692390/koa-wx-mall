@@ -1,5 +1,5 @@
 import Sequelize from 'sequelize'
-import { createSchema } from '../../db'
+import { createSchema, sequelize } from '../../db'
 import BaseModel from '../base-model'
 
 const schema = createSchema('word_user', {
@@ -15,6 +15,7 @@ const schema = createSchema('word_user', {
   sort: Sequelize.INTEGER,
   salary: Sequelize.STRING, 
   Expect_salary: Sequelize.STRING,
+  Remarks: Sequelize.TEXT
 })
 
 class Model extends BaseModel {
@@ -28,7 +29,6 @@ class Model extends BaseModel {
    * @return 
    */
   getList = async ctx => {
-      console.log(ctx.query)
     let {
         index,
         rows,
@@ -47,11 +47,30 @@ class Model extends BaseModel {
     let pageIndex = Math.floor(index) || 1;
     let size = Math.floor(rows) || 10;
 
-    let where = { 
+    let where = {}
+  
+    // if (InterviewTimer_Start && InterviewTimer_End) {
+    //   let start = `${InterviewTimer_Start} 00:00:00`
+    //   let end = `${InterviewTimer_End} 23:59:59`
+    //   where = {
+    //       'InterviewTimer': {
+    //           $gte: start,
+    //           $lte: end,
+    //        }
+    //    }
+    // }
+    // if (EntryTimer_Start && EntryTimer_End) {
+    //     where.EntryTimer = { $between: [new Date(EntryTimer_Start), new Date(EntryTimer_End)] }
+    // }
 
-    }
+    // sequelize.query(`select * from word_user where InterviewTimer between '2018-10-10' and '2018-12-12'`, { type: Sequelize.QueryTypes.SELECT}).then(users => {
+    //     console.log(users);
+    // })
+    // sequelize.query(`select count(*) as wx_mall FROM word_user where InterviewTimer between '2018-11-10' and '2018-11-12'`, { type: Sequelize.QueryTypes.SELECT}).then(users => {
+    //     console.log(users);
+    // })
     if (userName) {
-      where.userName = userName
+        where.userName = userName
     }
     if (phone) {
         where.phone = phone
@@ -68,24 +87,17 @@ class Model extends BaseModel {
     if (jobPosition) {
         where.jobPosition = jobPosition
     }
-
-    if (InterviewTimer_Start && InterviewTimer_End) {
-      where.createdAt = { $between: [new Date(+InterviewTimer_Start), new Date(+InterviewTimer_End)] }
-    }
-    if (EntryTimer_Start && EntryTimer_End) {
-        where.createdAt = { $between: [new Date(+EntryTimer_Start), new Date(+EntryTimer_End)] }
-    }
-  
+    console.log(where)
     let data = await this._schema.findAndCountAll({
-      where, 
-      order:  [['sort','DESC']],
-      limit: size,
-      offset: (pageIndex - 1) * size,
-    });
-
-    data.limit = size;
-    data.offset = pageIndex;
-    
+            where,
+            order:  [['sort','DESC']],
+            limit: size,
+            offset: (pageIndex - 1) * size,
+        });
+  
+        data.limit = rows;
+        data.offset = index;
+  
     return data;
   }
 }
