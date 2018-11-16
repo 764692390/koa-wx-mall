@@ -51,6 +51,8 @@ class HttpRequest {
       const { data, status } = res
       if (data.code === -1) {
         Cookies.set('token', '')
+        window.location.href = window.location.origin
+        return false
       }
       return { data, status }
     }, error => {

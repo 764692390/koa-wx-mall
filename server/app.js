@@ -25,6 +25,7 @@ app.keys = ['keys', 'keykeys'];
 
 app
     .use(error())
+    .use(koaStatic(__dirname + "/app/public"))
     .use(session({
         store: {
             host: '127.0.0.1',
@@ -46,7 +47,6 @@ app
     .use(cors())
     .use(bodyParser())
     // .use(session(CONFIG, app))
-    .use(koaStatic(__dirname + "/app/public"))
     .use(router.routes(), router.allowedMethods())
 
 app.listen(config.port, () => console.log(`node server start success port=${config.port}`));

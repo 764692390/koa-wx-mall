@@ -153,11 +153,14 @@ export default {
       this.$refs.sideMenu.updateOpenName(newRoute.name)
     }
   },
+  created() {
+    this.getUserinfoFn();  
+  },
   mounted () {
     /**
      * @description 初始化设置面包屑导航和标签导航
      */
-    this.getUserinfoFn();
+    
     this.setTagNavList()
     this.setHomeRoute(routers)
     this.addTag({
