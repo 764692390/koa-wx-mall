@@ -29,7 +29,7 @@
                         </Select>
                       </FormItem>
                     </Col>
-                    <!-- <Col span="8">
+                    <Col span="8">
                       <FormItem label="面试时间">
                         <div class="cl">
                             <div class="fl" style="width:46%">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                       </FormItem>
-                    </Col> -->
+                    </Col>
                     <!-- <Col span="8">
                         <FormItem label="入职时间">
                           <div class="cl">
@@ -70,14 +70,14 @@
                         </Select>
                       </FormItem>
                     </Col>
-                    <!-- <Col span="8">
+                    <Col span="8">
                       <FormItem label="是否转正">
                         <Select v-model="formTop.isBecome" placeholder="是否转正">
                           <Option :value="'1'">是</Option>
                           <Option :value="'0'">否</Option>
                         </Select>
                       </FormItem>
-                    </Col>  -->
+                    </Col>
                     <Col span="8"  style="float: right;">
                         <FormItem label="" style="text-align: right; margin-top:23px;" >
                             <Button type="primary" @click="openModel1">新增人员</Button>
@@ -321,13 +321,13 @@ export default {
           render: (h, params) => {
             if (params.row.jobPosition === 0) {
               return h('div', {}, 'web前端工程师')
-            } else if (params.row.jobPosition == 1) {
+            } else if (params.row.jobPosition === 1) {
               return h('div', {}, 'java工程师')
-            } else if (params.row.jobPosition == 2) {
+            } else if (params.row.jobPosition === 2) {
               return h('div', {}, '测试工程师')
-            } else if (params.row.jobPosition == 3) {
+            } else if (params.row.jobPosition === 3) {
               return h('div', {}, '产品经理')
-            } else if (params.row.jobPosition == 4) {
+            } else if (params.row.jobPosition === 4) {
               return h('div', {}, '设计师')
             }
           }
@@ -346,9 +346,9 @@ export default {
           key: 'isThrough',
           render: (h, params) => {
             if (params.row.isThrough === 0) {
-              return h('Tag', { props: { color: 'warning'}}, '面试不通过')
+              return h('Tag', {props: {color: 'warning'}}, '面试不通过')
             } else {
-              return h('Tag', { props: { color: 'success'}}, '通过')
+              return h('Tag', {props: {color: 'success'}}, '通过')
             }
           }
         },
@@ -394,6 +394,7 @@ export default {
                       Expect_salary, // 期望薪资
                       Remarks // 备注
                     } = params.row
+
                     this.addFrom = {
                       id,
                       userName, // 姓名
@@ -407,7 +408,8 @@ export default {
                       salary, // 薪资
                       Expect_salary, // 期望薪资
                       Remarks // 备注
-                    },
+                    }
+
                     this.modal1 = true
                   }
                 }
@@ -445,6 +447,7 @@ export default {
         isBecome: null, // 是否转正
         jobPosition: null // 工作职位
       }
+      this.pageNum = 1;
     },
     // 获取分页
     getList () {
@@ -507,7 +510,7 @@ export default {
         salary: null, // 薪资
         Expect_salary: null, // 期望薪资
         Remarks: null // 备注
-      },
+      }
       this.modal1 = true
     },
     // 新增确定

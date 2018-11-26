@@ -47,58 +47,71 @@ class Model extends BaseModel {
     let pageIndex = Math.floor(index) || 1;
     let size = Math.floor(rows) || 10;
 
-    let where = {}
-  
-    // if (InterviewTimer_Start && InterviewTimer_End) {
-    //   let start = `${InterviewTimer_Start} 00:00:00`
-    //   let end = `${InterviewTimer_End} 23:59:59`
-    //   where = {
-    //       'InterviewTimer': {
-    //           $gte: start,
-    //           $lte: end,
-    //        }
-    //    }
-    // }
-    // if (EntryTimer_Start && EntryTimer_End) {
-    //     where.EntryTimer = { $between: [new Date(EntryTimer_Start), new Date(EntryTimer_End)] }
-    // }
+    let sql = `select * from word_user`
+    let count =`select count(*) as wx_mall FROM word_user`
 
+    let where = []
+    if (EntryTimer_Start && EntryTimer_End) {
+        where.push(`EntryTimer between '${EntryTimer_Start}' and '${EntryTimer_End}'`)
+    }
+    if (InterviewTimer_Start && InterviewTimer_End) {
+        where.push(`InterviewTimer between '${InterviewTimer_Start}' and '${InterviewTimer_End}'`)
+    }
+    if (userName) {
+        where.push(`userName='${userName}'`)
+    }
+    if (phone) {
+        where.push(`phone='${phone}'`)
+    }
+    if (isThrough) {
+        where.push(`isThrough='${isThrough}'`)
+    }
+    if (isJob) {
+        where.push(`isJob='${isJob}'`)
+    }
+    if (isBecome) {
+        where.push(`isBecome='${isBecome}'`)
+    }
+    if (jobPosition) {
+        where.push(`jobPosition='${jobPosition}'`)
+    }
+    let whereToStr = ''
+    for(var i=0; i< where.length; i++) {
+        if(where.length > 0 && i === 0){
+            whereToStr = ` where`
+        }
+        if(i+1 === where.length) {
+            whereToStr += ` ${where[i]} `
+        } else {
+            whereToStr += ` ${where[i]} and `
+        }
+    }
+    
     // sequelize.query(`select * from word_user where InterviewTimer between '2018-10-10' and '2018-12-12'`, { type: Sequelize.QueryTypes.SELECT}).then(users => {
     //     console.log(users);
     // })
     // sequelize.query(`select count(*) as wx_mall FROM word_user where InterviewTimer between '2018-11-10' and '2018-11-12'`, { type: Sequelize.QueryTypes.SELECT}).then(users => {
     //     console.log(users);
     // })
-    if (userName) {
-        where.userName = userName
-    }
-    if (phone) {
-        where.phone = phone
-    }
-    if (isThrough) {
-        where.isThrough = isThrough
-    }
-    if (isJob) {
-        where.isJob = isJob
-    }
-    if (isBecome) {
-        where.isBecome = isBecome
-    }
-    if (jobPosition) {
-        where.jobPosition = jobPosition
-    }
-    console.log(where)
-    let data = await this._schema.findAndCountAll({
-            where,
-            order:  [['sort','DESC']],
-            limit: size,
-            offset: (pageIndex - 1) * size,
-        });
+    let resData = {}
+    let data = await this.Query(sql + whereToStr + ` order by InterviewTimer desc limit ${(pageIndex-1)*size},${pageIndex*size}`)
+    let counts = await this.Query(count+ whereToStr)
+    // let data = await this._schema.findAndCountAll({
+    //         where:{
+    //             'InterviewTimer': {
+    //                 $between: ['2018-11-01', '2018-11-15']
+    //             }
+    //         },
+    //         order:  [['InterviewTimer','DESC']],
+    //         limit: size,
+    //         offset: (pageIndex - 1) * size,
+    //     });
+    resData.rows = data;
+    resData.limit = rows;
+    resData.offset = index;
+    resData.count = counts[0].wx_mall;
   
-        data.limit = rows;
-        data.offset = index;
-  
-    return data;
+    return resData;
   }
 }
 
