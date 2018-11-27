@@ -94,7 +94,7 @@ class Model extends BaseModel {
     //     console.log(users);
     // })
     let resData = {}
-    let data = await this.Query(sql + whereToStr + ` order by InterviewTimer desc limit ${(pageIndex-1)*size},${pageIndex*size}`)
+    let data = await this.Query(sql + whereToStr + ` order by InterviewTimer desc limit ${size} offset ${(pageIndex - 1)*size}`)
     let counts = await this.Query(count+ whereToStr)
     // let data = await this._schema.findAndCountAll({
     //         where:{
