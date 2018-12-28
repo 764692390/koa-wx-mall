@@ -40,6 +40,7 @@ app
             '/api/v1/user/check-token', //  微信用户验证token
             '/api/v1/adminUser/login', // 后台登录
             '/api/v1/adminUser/register', // 注册
+            '/api/v1/userLog/getList', // 获取日志列表
 
         ] //数组中的路径不需要通过jwt验证
     }))

@@ -1,4 +1,4 @@
-import { User } from '../../services'
+import { User, UserLog } from '../../services'
 import BaseController from '../base-controller'
 import { res, resError, err } from '../../libs/format';
 
@@ -27,9 +27,15 @@ class Controller extends BaseController {
     // 注册
     register = async ctx => {
         const params = ctx.request.body
+        const UserLogs = new UserLog();
         let result
-
         try {
+            // 获取ip
+            const ipData = await this._services.getIp(ctx);
+          
+            // 存登录日志表
+            const createUserLog = await UserLogs.create({ ...params, ...ipData, openId: params.openid });
+
             if (params.openid && params.session_key) {
                 // 设置session  
                 let userInfo = { ...params, openId: params.openid, timer: new Date().getTime() };
@@ -40,6 +46,7 @@ class Controller extends BaseController {
                 ctx.body = result
                 return;
             }
+           
 
             // 根据 openId 查询用户是否存在    
             const findOpenId = await this._services.findOpenId({ openId: params.openid });
