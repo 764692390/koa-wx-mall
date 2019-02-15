@@ -67,6 +67,7 @@
                           <Option :value="'2'">测试工程师</Option>
                           <Option :value="'3'">产品经理</Option>
                           <Option :value="'4'">设计师</Option>
+                          <Option :value="'5'">西安web前端工程师</Option>
                         </Select>
                       </FormItem>
                     </Col>
@@ -170,6 +171,7 @@
                           <Option :value="2">测试工程师</Option>
                           <Option :value="3">产品经理</Option>
                           <Option :value="4">设计师</Option>
+                          <Option :value="5">西安web前端工程师</Option>
                         </Select>
                       </FormItem>
                     </Col>
@@ -245,7 +247,9 @@
                                 : detailModelData.jobPosition == 2 ?
                                     '测试工程师'
                                 : detailModelData.jobPosition == 3 ?
-                                    '产品经理'  : '设计师'
+                                    '产品经理'
+                                : detailModelData.jobPosition == 4 ?
+                                    '设计师' : '西安web前端工程师'
                              }}
                         </span>
                     </Col>
@@ -329,6 +333,8 @@ export default {
               return h('div', {}, '产品经理')
             } else if (params.row.jobPosition === 4) {
               return h('div', {}, '设计师')
+            } else if (params.row.jobPosition === 5) {
+              return h('div', {}, '西安web前端工程师')
             }
           }
         },
@@ -447,7 +453,7 @@ export default {
         isBecome: null, // 是否转正
         jobPosition: null // 工作职位
       }
-      this.pageNum = 1;
+      this.pageNum = 1
     },
     // 获取分页
     getList () {
@@ -537,6 +543,19 @@ export default {
     },
     // 新增关闭
     ADDcancel (ev) {
+      this.modal1 = false
+      this.formTop = {
+        userName: null, // 姓名
+        phone: null, // 手机号
+        isThrough: null, // 面试是否通过
+        isJob: null, // 是否在职
+        InterviewTimer_Start: null, // 面试时间-开始
+        InterviewTimer_End: null, // 面试结束-时间
+        EntryTimer_Start: null, // 入职时间-开始时间
+        EntryTimer_End: null, // 入职结束时间
+        isBecome: null, // 是否转正
+        jobPosition: null // 工作职位
+      }
     },
     detailSubmit () {},
     handleReset () {}
