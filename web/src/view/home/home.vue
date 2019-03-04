@@ -24,8 +24,9 @@
                     <Col span="8">
                       <FormItem label="是否在职">
                         <Select v-model="formTop.isJob" placeholder="是否在职">
+                          <Option :value="0">未入职</Option>
                           <Option :value="1">在职</Option>
-                          <Option :value="0">离职</Option>
+                          <Option :value="2">离职</Option>
                         </Select>
                       </FormItem>
                     </Col>
@@ -127,8 +128,9 @@
                     <Col span="8">
                       <FormItem label="是否在职">
                         <Select v-model="addFrom.isJob" placeholder="是否在职">
+                          <Option :value="0">未入职</Option>
                           <Option :value="1">在职</Option>
-                          <Option :value="0">离职</Option>
+                          <Option :value="2">离职</Option>
                         </Select>
                       </FormItem>
                     </Col>
@@ -214,7 +216,11 @@
                     </Col>
                     <Col span="8">
                         <i>是否在职：</i>
-                        <span>{{detailModelData.isJob == 1 ? '在职' : '否' }}</span>
+                        <span>{{ 
+                            detailModelData.isJob == 0 ? '未入职' : 
+                            detailModelData.isJob == 1 ? '在职' : 
+                            '离职' 
+                        }}</span>
                     </Col>
                     <Col span="8">
                         <i>手机号：</i>
