@@ -27,6 +27,7 @@
     "koa-session": "^5.8.1",
     "koa-session-redis": "^1.1.0",
     "koa-static": "^4.0.2",
+    "koa-static-cache": "^5.1.2",
     "koa-views": "^6.1.4",
     "md5": "^2.2.1",
     "mysql": "^2.15.0",

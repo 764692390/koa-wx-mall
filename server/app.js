@@ -2,7 +2,8 @@ import Koa from 'koa'
 import bodyParser from 'koa-bodyparser'
 import jwtKoa from 'koa-jwt'
 import error from './app/middlewares/error';
-import koaStatic from 'koa-static'
+//import koaStatic from 'koa-static'
+import koaStaticCache from 'koa-static-cache'
 import cors from '@koa/cors'
 import router from './app/router';
 import config from './app/config';
@@ -25,15 +26,18 @@ app.keys = ['keys', 'keykeys'];
 
 app
     .use(error())
-    .use(koaStatic(__dirname + "/app/public"))
+    //.use(koaStatic(__dirname + "/app/public"))
+    .use(koaStaticCache(__dirname + "/app/public", {
+        maxAge: 365 * 24 * 60 * 60
+    }))
     .use(session({
         store: {
             host: '127.0.0.1',
             port: 6379,
-            ttl: 3600*24,
+            ttl: 3600 * 24,
         },
     }))
-    .use( jwtKoa({secret}).unless({
+    .use(jwtKoa({ secret }).unless({
         path: [
             '/api/v1/user/codeToOpenId', // 微信code换openId
             '/api/v1/user/register',    //  微信用户注册
