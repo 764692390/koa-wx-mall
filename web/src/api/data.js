@@ -23,3 +23,10 @@ export const workUserGetList = (data) => {
     params: data
   })
 }
+
+export const getAllJobType = () => {
+  return axios.request({
+    url: '/jobType/getAll',
+    method: 'get'
+  })
+}

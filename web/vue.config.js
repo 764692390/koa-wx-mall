@@ -39,7 +39,8 @@ module.exports = {
   devServer: {
     proxy: {
       '/api/v1': {
-        target: 'https://lz.jczxw.cn',
+        // target: 'https://lz.jczxw.cn',
+        target: 'http://127.0.0.1:8080',
         ws: true,
         changeOrigin: true,
         pathRewrite: {
