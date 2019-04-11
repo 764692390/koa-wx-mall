@@ -79,7 +79,7 @@
           <Col span="8" style="float: right;">
             <FormItem label style="text-align: right; margin-top:23px;">
               <Button type="primary" @click="openModel1">新增人员</Button>
-              <Button class="mar-l-10" type="primary" @click="getList">查询</Button>
+              <Button class="mar-l-10" type="primary" @click="queryList">查询</Button>
               <Button class="mar-l-10" type="default" @click="resetBtn">重置</Button>
             </FormItem>
           </Col>
@@ -469,6 +469,11 @@ export default {
         jobPosition: null // 工作职位
       }
       this.pageNum = 1
+    },
+    // 查询分页
+    queryList () {
+      this.pageNum = 1
+      this.getList()
     },
     // 获取分页
     getList () {
